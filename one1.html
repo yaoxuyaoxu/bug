@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="utf-8">
+	<title>dbl</title>
+	<link rel="stylesheet" href="css/jquery.fullPage.css">
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+
+		}
+
+		.clearfix {
+			overflow: hidden;
+		}
+
+		.sectionA1 {
+			width: 1100px;
+			margin: 0 auto;
+			padding: 30px 50px;
+		}
+
+		.sectionA1 .sectionA1L {
+			float: left;
+			background: url('./images/iconMoney.jpg') no-repeat center left;
+		}
+
+		.sectionA1 .sectionA1R {
+			float: right;
+			font-size: 16px;
+			color: #636363;
+		}
+
+		.sectionA1 .sectionA1L span:nth-child(1) {
+			font-size: 26px;
+			padding-left: 40px;
+		}
+
+		.sectionA1 .sectionA1L span:nth-child(2) {
+			font-size: 16px;
+			color: #636363;
+			padding-left: 28px;
+		}
+
+		.sectionA1 .sectionA1R .redBold {
+			color: #f10215;
+		}
+
+		.sectionA1 .sectionA1R p span {
+			display: inline-block;
+			padding: 0 5px;
+			font-size: 12px;
+			font-weight: bold;
+			background: #f10215;
+			color: #fff;
+			line-height: 2;
+			margin-left: 15px;
+			position: relative;
+		}
+
+		.sectionA1 .sectionA1R p span::before {
+			content: '';
+			display: block;
+			width: 0;
+			height: 0;
+			border-top: 5px solid transparent;
+			border-bottom: 5px solid transparent;
+			border-right: 6px solid #f10215;
+			position: absolute;
+			left: -6px;
+			top: 7px;
+		}
+
+		.sectionA1 .TabBtn {
+			overflow: hidden;
+			padding-top: 40px;
+		}
+
+		.sectionA1 .TabBtn li {
+			float: left;
+			border-right: 1px solid #dedede;
+			padding: 0 20px;
+			margin-bottom: 8px;
+			position: relative;
+			cursor: pointer;
+		}
+
+		.sectionA1 .TabBtn li:nth-child(4) {
+			border: none;
+		}
+
+		.sectionA1 .TabBtn .active {
+			color: #f10215;
+		}
+
+		.sectionA1 .TabBtn .active::before {
+			content: '';
+			position: absolute;
+			width: 64px;
+			height: 1px;
+			background: #f10215;
+			bottom: -4px;
+		}
+
+		.sectionA1 .TabBtn .active span::before {
+			content: '';
+			display: block;
+			width: 0;
+			height: 0;
+			border-top: 5px solid #f10215;
+			border-left: 5px solid transparent;
+			border-right: 5px solid transparent;
+			position: absolute;
+			left: 48px;
+			top: 24px;
+		}
+		.sectionA1 .TabSubtab{
+			display: none;
+		}
+		.sectionA1 .TabSubtab .TabSubL {
+			float: left;
+			width: 160px;
+			line-height: 56px;
+			text-align: center;
+			font-size: 16px;
+			background: #f3f3f3;
+			border-radius: 4px;
+		}
+
+		.sectionA1 .TabSubtab .TabSubL li {
+			cursor: pointer;
+			position: relative;
+		}
+
+		.sectionA1 .TabSubtab .TabSubL li:hover {
+			background: #ff3f3a;
+			color: #fff;
+		}
+
+		.sectionA1 .TabSubtab .TabSubL li:hover::before {
+			content: '';
+			position: absolute;
+			width: 0;
+			height: 0;
+			border-left: 20px solid #ff3f3a;
+			border-top: 28px solid transparent;
+			border-bottom: 28px solid transparent;
+			right: -20px;
+			top: 0px;
+		}
+
+		.sectionA1 .TabSubtab .TabSubL .active {
+			background: #ff3f3a;
+			color: #fff;
+		}
+
+		.sectionA1 .TabSubtab .TabSubL .active::before {
+			content: '';
+			position: absolute;
+			width: 0;
+			height: 0;
+			border-left: 20px solid #ff3f3a;
+			border-top: 28px solid transparent;
+			border-bottom: 28px solid transparent;
+			right: -20px;
+			top: 0px;
+		}
+
+		.sectionA1 .TabSubtab .TabSubR {
+			float: left;
+			margin-left: 44px;
+		}
+
+		.sectionA1 .TabSubtab .TabSubR p {
+			line-height: 48px;
+			font-size: 18px;
+			background: linear-gradient(to right, #f10215, #f14b02);
+			color: #fff;
+			width: 890px;
+			font-weight: bold;
+			border-radius: 4px 4px 0 0;
+		}
+
+		.sectionA1 .TabSubtab .TabSubR p span {
+			width: 75px;
+			display: inline-block;
+			padding: 0 30px;
+		}
+
+		.sectionA1 .TabSubtab .TabSubR p span:nth-of-type(1) {
+			margin-left: 30px;
+		}
+
+		.scrol {
+			overflow: hidden;
+			height: 342px;
+			position: relative;
+			padding-left: 30px;
+			display: none;
+		}
+		.now{
+			display: block;
+		}
+		.scrol li span {
+			display: inline-block;
+			padding: 0 35px;
+			width: 75px;
+		}
+
+		.scrol1 {
+			height: auto;
+			text-align: center;
+		}
+
+		.scrol2 {
+			height: auto;
+			text-align: center;
+		}
+
+		.scrol1 li,
+		.scrol2 li {
+			list-style-type: none;
+			line-height: 56px;
+			border-bottom: 1px solid #f3f3f3;
+			text-align: left;
+		}
+	</style>
+	<script src="js/jquery-1.8.3.min.js"></script>
+	<script src="js/jquery.fullPage.min.js"></script>
+	<script src="http://cdn.staticfile.org/jquery-easing/1.3/jquery.easing.min.js"></script>
+	<script>
+		$(function () {
+
+		});
+	</script>
+</head>
+
+<body>
+	<div class="sectionA1">
+		<div class="clearfix">
+			<div class="sectionA1L">
+				<span>今日特价店铺</span>
+				<span>总有你想要的低价</span>
+			</div>
+			<div class="sectionA1R">
+				<p>店伯乐每日推出<strong class="redBold">独家内部资源</strong>，挑战全网最低价<span>NEW</span></p>
+			</div>
+		</div>
+		<ul class="TabBtn">
+			<li class="active"><span>天猫商城</span></li>
+			<li><span>淘宝网店</span></li>
+			<li><span>京东商城</span></li>
+			<li><span>其他网店</span></li>
+		</ul>
+		<div class="s1">
+			<form class="search_form" name="searchForm" action="/ss/" method="post">
+				<div class="sn1">
+					<input type="text" name="keys" placeholder="输入关键词，全网优质店铺一键获取">
+				</div>
+				<input type="submit" value="搜索" class="submit">
+			</form>
+		</div>
+		<div class="TabSubCtn">
+			<div class="TabSubtab clearfix" style="display:block;">
+				<ul class="TabSubL">
+					<li class="active">服饰鞋包</li>
+					<li>食品保健</li>
+					<li>家居用品</li>
+					<li>美容护理</li>
+					<li>3C数码</li>
+					<li>运用户外</li>
+					<li>母婴用品</li>
+				</ul>
+				<div class="TabSubR">
+					<p><span>商城类型</span> <span>有无扣分</span> <span>是否新店</span> <span>出售价格</span> <span>商标类型</span></p>
+					<div class="scrol now" style="display:block;">
+						<ul class="scrol1" style="margin-top: 0px;">
+							<li><span>旗舰店1</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店1</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店1</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店1</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店1</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店1</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店1</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店1</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店1</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店1</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店1</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+						</ul>
+					</div>
+					<div class="scrol">
+						<ul class="scrol1" style="margin-top: 0px;">
+							<li><span>旗舰店2</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店2</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店2</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店2</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店2</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店2</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店2</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店2</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店2</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店2</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店2</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+						</ul>
+					</div>
+					<div class="scrol">
+						<ul class="scrol1" style="margin-top: 0px;">
+							<li><span>旗舰店3</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店3</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店3</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店3</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店3</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店3</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店3</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店3</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店3</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店3</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店3</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+						</ul>
+					</div>
+					<div class="scrol">
+						<ul class="scrol1" style="margin-top: 0px;">
+							<li><span>旗舰店4</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店4</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店4</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店4</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店4</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店4</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店4</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店4</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店4</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店4</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店4</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+						</ul>
+					</div>
+					<div class="scrol">
+						<ul class="scrol1" style="margin-top: 0px;">
+							<li><span>旗舰店5</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店5</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店5</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店5</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店5</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店5</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店5</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店5</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店5</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店5</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店5</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+						</ul>
+					</div>
+					<div class="scrol">
+						<ul class="scrol1" style="margin-top: 0px;">
+							<li><span>旗舰店6</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店6</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店6</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店6</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店6</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店6</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店6</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店6</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店6</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店6</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店6</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+						</ul>
+					</div>
+					<div class="scrol">
+						<ul class="scrol1" style="margin-top: 0px;">
+							<li><span>旗舰店7</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店7</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店7</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店7</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店7</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店7</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店7</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店7</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店7</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店7</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店7</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="TabSubtab clearfix">
+				<ul class="TabSubL">
+					<li class="active">服饰鞋包</li>
+					<li>食品保健</li>
+					<li>家居用品</li>
+					<li>美容护理</li>
+					<li>3C数码</li>
+					<li>运用户外</li>
+					<li>母婴用品</li>
+				</ul>
+				<div class="TabSubR">
+					<p><span>商城类型</span> <span>有无扣分</span> <span>是否新店</span> <span>出售价格</span> <span>商标类型</span></p>
+					<div class="scrol">
+						<ul class="scrol1" style="margin-top: 0px;">
+							<li><span>旗舰店1</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店1</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店1</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店1</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店1</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店1</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店1</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店1</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店1</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店1</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店1</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+						</ul>
+					</div>
+					<div class="scrol">
+						<ul class="scrol1" style="margin-top: 0px;">
+							<li><span>旗舰店2</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店2</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店2</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店2</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店2</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店2</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店2</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店2</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店2</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店2</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店2</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+						</ul>
+					</div>
+					<div class="scrol">
+						<ul class="scrol1" style="margin-top: 0px;">
+							<li><span>旗舰店3</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店3</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店3</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店3</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店3</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店3</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店3</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店3</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店3</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店3</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店3</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+						</ul>
+					</div>
+					<div class="scrol">
+						<ul class="scrol1" style="margin-top: 0px;">
+							<li><span>旗舰店4</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店4</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店4</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店4</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店4</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店4</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店4</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店4</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店4</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店4</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店4</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+						</ul>
+					</div>
+					<div class="scrol">
+						<ul class="scrol1" style="margin-top: 0px;">
+							<li><span>旗舰店5</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店5</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店5</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店5</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店5</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店5</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店5</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店5</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店5</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店5</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店5</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+						</ul>
+					</div>
+					<div class="scrol">
+						<ul class="scrol1" style="margin-top: 0px;">
+							<li><span>旗舰店6</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店6</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店6</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店6</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店6</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店6</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店6</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店6</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店6</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店6</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店6</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+						</ul>
+					</div>
+					<div class="scrol">
+						<ul class="scrol1" style="margin-top: 0px;">
+							<li><span>旗舰店7</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店7</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店7</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店7</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店7</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店7</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店7</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店7</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店7</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店7</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店7</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="TabSubtab clearfix">
+				<ul class="TabSubL">
+					<li class="active">服饰鞋包</li>
+					<li>食品保健</li>
+					<li>家居用品</li>
+					<li>美容护理</li>
+					<li>3C数码</li>
+					<li>运用户外</li>
+					<li>母婴用品</li>
+				</ul>
+				<div class="TabSubR">
+					<p><span>商城类型</span> <span>有无扣分</span> <span>是否新店</span> <span>出售价格</span> <span>商标类型</span></p>
+					<div class="scrol">
+						<ul class="scrol1" style="margin-top: 0px;">
+							<li><span>旗舰店1</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店1</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店1</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店1</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店1</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店1</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店1</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店1</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店1</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店1</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店1</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+						</ul>
+					</div>
+					<div class="scrol">
+						<ul class="scrol1" style="margin-top: 0px;">
+							<li><span>旗舰店2</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店2</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店2</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店2</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店2</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店2</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店2</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店2</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店2</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店2</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店2</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+						</ul>
+					</div>
+					<div class="scrol">
+						<ul class="scrol1" style="margin-top: 0px;">
+							<li><span>旗舰店3</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店3</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店3</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店3</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店3</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店3</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店3</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店3</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店3</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店3</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店3</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+						</ul>
+					</div>
+					<div class="scrol">
+						<ul class="scrol1" style="margin-top: 0px;">
+							<li><span>旗舰店4</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店4</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店4</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店4</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店4</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店4</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店4</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店4</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店4</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店4</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店4</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+						</ul>
+					</div>
+					<div class="scrol">
+						<ul class="scrol1" style="margin-top: 0px;">
+							<li><span>旗舰店5</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店5</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店5</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店5</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店5</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店5</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店5</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店5</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店5</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店5</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店5</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+						</ul>
+					</div>
+					<div class="scrol">
+						<ul class="scrol1" style="margin-top: 0px;">
+							<li><span>旗舰店6</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店6</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店6</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店6</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店6</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店6</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店6</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店6</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店6</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店6</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店6</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+						</ul>
+					</div>
+					<div class="scrol">
+						<ul class="scrol1" style="margin-top: 0px;">
+							<li><span>旗舰店7</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店7</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店7</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店7</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店7</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店7</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店7</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店7</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店7</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店7</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店7</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="TabSubtab clearfix">
+				<ul class="TabSubL">
+					<li class="active">服饰鞋包</li>
+					<li>食品保健</li>
+					<li>家居用品</li>
+					<li>美容护理</li>
+					<li>3C数码</li>
+					<li>运用户外</li>
+					<li>母婴用品</li>
+				</ul>
+				<div class="TabSubR">
+					<p><span>商城类型</span> <span>有无扣分</span> <span>是否新店</span> <span>出售价格</span> <span>商标类型</span></p>
+					<div class="scrol">
+						<ul class="scrol1" style="margin-top: 0px;">
+							<li><span>旗舰店1</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店1</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店1</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店1</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店1</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店1</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店1</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店1</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店1</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店1</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店1</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+						</ul>
+					</div>
+					<div class="scrol">
+						<ul class="scrol1" style="margin-top: 0px;">
+							<li><span>旗舰店2</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店2</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店2</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店2</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店2</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店2</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店2</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店2</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店2</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店2</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店2</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+						</ul>
+					</div>
+					<div class="scrol">
+						<ul class="scrol1" style="margin-top: 0px;">
+							<li><span>旗舰店3</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店3</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店3</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店3</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店3</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店3</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店3</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店3</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店3</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店3</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店3</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+						</ul>
+					</div>
+					<div class="scrol">
+						<ul class="scrol1" style="margin-top: 0px;">
+							<li><span>旗舰店4</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店4</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店4</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店4</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店4</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店4</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店4</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店4</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店4</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店4</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店4</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+						</ul>
+					</div>
+					<div class="scrol">
+						<ul class="scrol1" style="margin-top: 0px;">
+							<li><span>旗舰店5</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店5</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店5</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店5</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店5</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店5</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店5</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店5</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店5</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店5</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店5</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+						</ul>
+					</div>
+					<div class="scrol">
+						<ul class="scrol1" style="margin-top: 0px;">
+							<li><span>旗舰店6</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店6</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店6</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店6</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店6</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店6</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店6</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店6</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店6</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店6</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店6</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+						</ul>
+					</div>
+					<div class="scrol">
+						<ul class="scrol1" style="margin-top: 0px;">
+							<li><span>旗舰店7</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店7</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店7</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店7</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店7</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店7</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店7</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店7</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店7</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店7</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+							<li><span>旗舰店7</span><span>无</span><span>否</span><span>9.5万</span><span>R标</span><a
+									href="#">查看详情></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- <ul>
+			<li>
+				<h4>平台更专业</h4>
+				<p>预约陪同过户专员一对一交易</p>
+				<p>···</p>
+			</li>
+		</ul> -->
+	</div>
+
+
+	<script>
+		$(function () {
+			var $this = $(".now");
+			var scrollTimer;
+			$('.TabSubtab .TabSubL').find('li').hover(function () {
+				$(this).addClass('active').siblings().removeClass('active');
+				$(this).parents('.TabSubtab').find('.TabSubR div').eq($(this).index()).show().siblings('div').hide();
+				$(this).parents('.TabSubtab').find('.TabSubR div').eq($(this).index()).addClass('now').siblings().removeClass('now');
+				$this = $(".now");
+				
+			}, function () {
+
+			})
+			$this.hover(function () {
+				clearInterval(scrollTimer);
+			}, function () {
+				$this = $(".now");
+				scrollTimer = setInterval(function () {
+					scrollNews($this);
+				}, 2000);
+			}).trigger("mouseout");
+
+			$('.TabBtn li').hover(function(){
+				$(this).addClass('active').siblings().removeClass('active');
+				$('.TabSubCtn').find('.TabSubtab').eq($(this).index()).show().siblings().hide();
+				$('.TabSubCtn').find('.TabSubtab').eq($(this).index()).find('.TabSubR div:first').addClass('now');
+				$this = $(".now");
+			},function(){
+
+			})
+		});
+		function scrollNews(obj) {
+			var $self = obj.find("ul:first");
+			var lineHeight = $self.find("li:first").height();
+			$self.animate({ "margin-top": -lineHeight + "px" }, 600, function () {
+				$self.css({ "margin-top": "0px" }).find("li:first").appendTo($self);
+			})
+		} 
+
+		
+	</script>
+
+
+
+
+
+
+</body>
+
+</html>
