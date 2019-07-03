@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>fullPage.js — 回调函数演示_dowebok</title>
+<link rel="stylesheet" href="css/jquery.fullPage.css">
+<style>
+.section { text-align: center; font: 50px "Microsoft Yahei"; color: #fff; background: url(images/fp1.jpg) 50%;}
+.section2 { background: url(images/fp2.jpg) 50%;}
+.section3 { background: url(images/fp3.jpg) 50%;}
+.section4 { background: url(images/fp4.jpg) 50%;}
+.section5 { background: url(images/fp5.jpg) 50%;}
+.section6 { background: url(images/fp6.jpg) 50%;}
+.section7 { background: url(images/fp7.jpg) 50%;}
+.section2 p { position: relative; left: -120%;}
+.section3 p,.section3 ul { position: relative; bottom: -120%;}
+.section5 .Promise { position: relative; left: -120%;}
+.section6 p { position: relative; left: -120%;}
+.section7 .submitMsg { position: relative; bottom: -120%;}
+
+.section1 h3{
+    padding-top: 386px;
+    font-size:36px;
+}
+.section1 p{
+    padding-top: 84px;
+    font-size: 20px;
+}
+.section2 h3{
+    font-size: 154px;
+    color: #ffd800;
+    margin: 0;
+}
+.section2 p:nth-of-type(1){
+    font-size: 40px;
+}
+.section2 p:nth-of-type(2){
+    width: 410px;
+    font-size: 20px;
+    margin: 0 auto;
+}
+.section3 h3{
+    margin-top: -174px;
+}
+.section3 p{
+    font-size: 24px;
+    width: 610px;
+    margin: 0 auto;
+    padding-top: 166px;
+}
+.section3 ul{
+    overflow: hidden;
+    width: 820px;
+    margin: 20px auto;
+}
+.section3 ul li{
+    list-style: none;
+    float: left;
+    font-size: 40px;
+    width: 120px;
+    height: 100px;
+    text-align: center;
+    border: 1px solid #fff;
+    background: rgba(194, 110, 110, 0.3);
+    border-radius: 50%;
+    line-height: 1;
+    padding-top: 20px;
+    margin: 0 20px;
+}
+.section3 ul li span{
+    font-size: 16px;
+}
+.section4 h3{
+    font-size: 40px;
+    margin-top: -270px;
+}
+.section5 ul{
+    overflow: hidden;
+    list-style: none;
+    width: 800px;
+    padding-left: 40%;
+}
+.section5 ul li{
+    float: left;
+    width: 370px;
+    height: 100px;
+    font-size: 24px;
+    padding-top: 100px;
+}
+.section5 ul li:nth-child(1){
+    background: url(images/safe.png) no-repeat center top;
+    border-right: 1px solid rgba(255,255,255,0.4);
+    border-bottom: 1px solid rgba(255,255,255,0.4);
+}
+.section5 ul li:nth-child(2){
+    background: url(images/law.png) no-repeat center top;
+    border-bottom: 1px solid rgba(255,255,255,0.4);
+}
+.section5 ul li:nth-child(3){
+    background: url(images/people.png) no-repeat center 74px;
+    border-right: 1px solid rgba(255,255,255,0.4);
+    padding-top: 150px;
+    height: 50px;
+}
+.section5 ul li:nth-child(4){
+    background: url(images/promise.png) no-repeat center 74px;
+    padding-top: 150px;
+    height: 50px;
+}
+.section6 p{
+    font-size: 24px;
+    width: 880px;
+    margin: 340px auto 0;
+}
+.section7 .submitMsg{
+    width: 750px;
+    height: 560px;
+    margin: 0 auto;
+    background: #fff;
+}
+.section7 .submitMsg .title{
+    line-height: 60px;
+    background: #f4bc00;
+    font-size: 20px;
+    text-align: center;
+    margin: 0;
+}
+.section7 .submitMsg .SubmitContent{
+    overflow: hidden;
+    padding: 35px;
+    text-decoration: none;
+    margin: 0;
+}
+.section7 .submitMsg .SubmitContent li{
+    float: left;
+    width: 50%;
+    display: block;
+    color: #242424;
+    font-size: 0;
+    text-align: left;
+}
+.section7 .submitMsg .SubmitContent li:nth-child(3),.section7 .submitMsg .SubmitContent li:nth-child(4){
+    width: 100%;
+}
+.section7 .submitMsg .SubmitContent li p{
+    font-size: 18px;
+    padding-left: 15px;
+    margin: 0;
+    line-height: 3;
+}
+.section7 .submitMsg .SubmitContent li input{
+    width: 270px;
+    padding: 0 15px;
+    line-height: 48px;
+}
+.section7 .submitMsg .SubmitContent li .Submit{
+    line-height: 60px;
+    padding: 0 86px;
+    display: block;
+    margin: 46px auto 0;
+    background: #f4bc00;
+    font-size: 22px;
+    border: none;
+    border-radius: 6px;
+}
+</style>
+<script src="js/jquery-1.8.3.min.js"></script>
+<script src="js/jquery.fullPage.min.js"></script>
+<script src="http://cdn.staticfile.org/jquery-easing/1.3/jquery.easing.min.js"></script>
+<script src="https://static.51dianbole.com/style/layer/layer.js"></script>
+<link rel="stylesheet" href="https://static.51dianbole.com/style/layer/theme/default/layer.css?v=3.1.1" id="layuicss-layer">
+<script>
+$(function(){
+	$('#dowebok').fullpage({
+		// sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE', '#f90'],
+		afterLoad: function(anchorLink, index){
+			if(index == 2){
+				$('.section2').find('p').delay(500).animate({
+					left: '0'
+				}, 1500, 'easeOutExpo');
+			}
+			if(index == 3){
+				$('.section3').find('p').delay(500).animate({
+					bottom: '0'
+				}, 1500, 'easeOutExpo');
+				$('.section3').find('ul').delay(800).animate({
+					bottom: '0'
+				}, 1500, 'easeOutExpo');
+			}
+			if(index == 4){
+				$('.section4').find('p').fadeIn(2000);
+			}
+			if(index == 5){
+				$('.section5').find('.Promise').delay(500).animate({
+					left: '0'
+				}, 1500, 'easeOutExpo');
+			}
+			if(index == 6){
+				$('.section6').find('p').delay(500).animate({
+					left: '0'
+				}, 1500, 'easeOutExpo');
+			}
+			if(index == 7){
+				$('.section7').find('.submitMsg').delay(500).animate({
+					bottom: '0'
+				}, 1500, 'easeOutExpo');
+			}
+		},
+		onLeave: function(index, direction){
+			if(index == '2'){
+				$('.section2').find('p').delay(500).animate({
+					left: '-120%'
+				}, 1500, 'easeOutExpo');
+			}
+			if(index == '3'){
+				$('.section3').find('p').delay(500).animate({
+					bottom: '-120%'
+				}, 1500, 'easeOutExpo');
+                $('.section3').find('ul').delay(800).animate({
+					bottom: '-120%'
+				}, 1500, 'easeOutExpo');
+			}
+			if(index == '4'){
+				$('.section4').find('p').fadeOut(2000);
+			}
+			if(index == '5'){
+				$('.section5').find('.Promise').delay(500).animate({
+					left: '-120%'
+				}, 1500, 'easeOutExpo');
+			}
+			if(index == '6'){
+				$('.section6').find('p').delay(500).animate({
+					left: '-120%'
+				}, 1500, 'easeOutExpo');
+			}
+			if(index == '7'){
+				$('.section7').find('.submitMsg').delay(500).animate({
+					bottom: '-120%'
+				}, 1500, 'easeOutExpo');
+			}
+		}
+	});
+    $('.section7').find('.Submit').click(function(){
+        var yname = $('.Yname').val();
+        var mobile = $('.Ymobile').val();
+        var need =$('.Yneed').val();
+
+        var pattern = new RegExp("[`~!@#$^&*()=|{}':;',\\[\\].<>/?~！@#￥……&*（）——|{}【】‘；：”“'。，、？%]");
+        var patternMobile = /^1[34578]\d{9}$/;
+        var result = yname.match(pattern);
+        var resultMobile = mobile.match(pattern);
+        if(yname == ''){
+            layer.msg('请输入姓名',{icon:0,skin: 'layui-layer-rim'});
+            return false;
+        }else if(result || $.isNumeric(yname) || resultMobile){
+            layer.msg('请不要输入特殊字符',{icon:0,skin: 'layui-layer-rim'});
+            return false;
+        }else if(mobile == ''){
+            layer.msg('请输入电话号',{icon:0,skin: 'layui-layer-rim'});
+            return false;
+        }else if( !patternMobile.test(mobile)){
+            layer.msg('请输入正确的电话号',{icon:0,skin: 'layui-layer-rim'});
+        }else if( need == ''){
+            layer.msg('请输入您的需求',{icon:0,skin: 'layui-layer-rim'});
+            return false;
+        }else{
+            $.ajax({
+                url:'/ajax/customers_shop',
+                data: { class: yname, class: need, mobile: mobile },
+                type: "POST",
+                dataType: "json",
+                onsuccess: function ( xhr ) {
+                    layer.msg('提交成功',{icon:0,skin: 'layui-layer-rim'});
+                },
+                onerror: function ( xhr ) {
+                    layer.msg('提交失败',{icon:1,skin: 'layui-layer-rim'});
+                }
+            })
+            
+        }
+    }) 
+   
+});
+</script>
+</head>
+
+<body>
+
+<div id="dowebok">
+	<div class="section section1">
+		<h3>网店交易就上店伯乐</h3>
+		<p>点击播放宣传视频</p>
+	</div>
+	<div class="section section2">
+		<h3>1000+</h3>
+        <p>超过1000位专业客服为您服务</p>
+        <p>店伯乐总部设立于四川成都，在职员工已
+            超过150名，其中交易客服人员已超过100名
+            只为给用户带来更好的服务体验。</p>
+	</div>
+	<div class="section section3">
+		<h3>专注网店交易服务·我们一直在努力</h3>
+		<p>店伯乐用心做好每件事，是为了广大的电商商家和
+            实践者能方便、快捷、安全的买卖网店而存在的一个平台</p>
+        <ul>
+            <li>
+                用心
+                <span>intention</span>
+            </li>
+            <li>
+                    公正<br>
+                <span>fair</span>
+            </li>
+            <li>
+                    口碑
+                <span>praise</span>
+            </li>
+            <li>
+                    专注
+                <span>Absorbed</span>
+            </li>
+            <li>
+                    诚信
+                <span>Sincerity</span>
+            </li>
+        </ul>
+	</div>
+	<div class="section section4">
+		<h3>20项店铺严格审查·描述不符全额退款</h3>
+	</div>
+	<div class="section section5">
+		<ul class="Promise">
+            <li>
+                    1. 交易全程托管资金
+            </li>
+            <li>
+                    2. 合同严格按照法律程序
+            </li>
+            <li>
+                    3. 可派专人全程陪同交易
+            </li>
+            <li>
+                    4. 多家权威机构认证
+            </li>
+        </ul>
+	</div>
+	<div class="section section6">
+		<p>青春，只一个很美的词，但又不知道它没在哪里。或许是因为年轻，所以享有青春。
+                或许是因为年轻，才会对所有怀揣幻想。充满朝气青春是多么美好，
+                在拼搏中去感受一切。奋斗中的青涩年华，拥有美好的青春时光。我们是幸福的！
+                店伯乐，专注网店服务、我们一种在努力！</p>
+	</div>
+	<div class="section section7">
+        <div class="submitMsg">
+            <p class="title">请填写您的需求或建议帮助，我们会及时联系您！</p>
+            <ul class="SubmitContent">
+                <li>
+                    <p>您的称呼</p>
+                    <input class="Yname" type="text" placeholder="请填写您的姓名">
+                </li>
+                <li>
+                    <p>您的电话</p>
+                    <input class="Ymobile" type="tel" placeholder="请填写您的电话">
+                </li>
+                <li>
+                    <p>您的需求</p>
+                    <textarea class="Yneed" name="" id="" cols="90" rows="10" placeholder="可以写您出售、购买的需求或者求助以及您的个人建议等等" style="resize:none;"></textarea>
+                    
+                </li>
+                <li>
+                    <button type="button" class="Submit">立刻提交您的需求</button>
+                </li>
+            </ul>
+            
+        </div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+</body>
+</html>
